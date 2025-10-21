@@ -1,0 +1,13 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.local/state/histfile
+HISTSIZE=10000
+SAVEHIST=10000
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+alias rebuild='sudo nixos-rebuild switch --flake ~/.dotfiles/#thinkpad --show-trace'
+alias lg='lazygit'
+alias y='yazi'
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

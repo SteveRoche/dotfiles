@@ -1,0 +1,43 @@
+window#waybar {
+	background-color: rgba(0, 0, 0, 0.4);
+	border-bottom: 0px solid #ffffff;
+}
+
+.modules-left {
+	padding-left: 5px;
+}
+
+#workspaces {
+	font-size: 14px;
+}
+
+#workspaces button {
+	color: #ffffff;
+	transition: all 0.1s ease-in-out;
+}
+
+#workspaces button.active {
+	color: #000000;
+	background: #cccccc;
+}
+
+tooltip {
+	border-radius: 16px;
+	opacity: 0.8;
+	padding: 20px;
+	margin: 0px;
+}
+
+#window {
+	font-size: 14px;
+}
+
+#battery {
+	font-size: 14px;
+}
+
+#clock {
+	font-size: 15px;
+	margin: 0px 15px 0px 0px;
+}
+
