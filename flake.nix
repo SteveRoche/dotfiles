@@ -46,7 +46,7 @@
         ];
       };
     };
-    darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
       specialArgs = {
         inherit system inputs;
         unstable = import unstable-nixpkgs {

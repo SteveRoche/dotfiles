@@ -17,6 +17,8 @@
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToEscape = true;
 
+  networking.hostName = "macbook";
+
   homebrew = {
     enable = true;
     onActivation = {
