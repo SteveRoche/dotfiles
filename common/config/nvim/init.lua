@@ -67,6 +67,21 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Supress spammy messages
+local suppressed_phrases = {
+  'position_encoding param is required',
+  'symbols_to_items must be called with valid position encoding'
+}
+local notify = vim.notify
+vim.notify = function(msg, ...)
+  for _, phrase in ipairs(suppressed_phrases) do
+    if msg:match(phrase) then
+      return
+    end
+  end
+  notify(msg, ...)
+end
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -213,7 +228,11 @@ require('lazy').setup {
           map('grd', require('telescope.builtin').lsp_definitions, 'Goto definition')
           map('grt', require('telescope.builtin').lsp_type_definitions, 'Goto type definition')
           map('grD', vim.lsp.buf.declaration, 'Goto declaration')
-          map('gO', require('telescope.builtin').lsp_document_symbols, 'Open document Symbols')
+          map('gO', function()
+            require('telescope.builtin').lsp_document_symbols({
+              ignore_symbols = { 'Field' }
+            })
+          end, 'Open document Symbols')
           map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
         end,
       })
