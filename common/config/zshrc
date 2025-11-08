@@ -5,6 +5,9 @@ SAVEHIST=10000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+EDITOR=nvim
+VISUAL=nvim
+
 alias ls='ls --color=auto'
 alias lg='lazygit'
 
