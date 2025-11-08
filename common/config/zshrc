@@ -34,5 +34,8 @@ function rebuild() {
   esac
 }
 
+if [ "$(uname -s)" = "Darwin" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
