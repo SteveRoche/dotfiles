@@ -76,6 +76,9 @@
     ## DotNet (for Dafny)
     dotnet-sdk
 
+    ## Shell scripting
+    shellcheck
+
     # Containerization
     podman
     podman-compose
