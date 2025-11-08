@@ -47,8 +47,13 @@
       };
     };
     darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = { inherit system inputs unstable; };
+      specialArgs = {
+        inherit system inputs;
+        unstable = import unstable-nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
+        };
+      };
       modules = [
         ./hosts/macbook/configuration.nix
         home-manager.darwinModules.home-manager
