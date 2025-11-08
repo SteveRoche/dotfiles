@@ -51,8 +51,7 @@
     alejandra
 
     ## Rust
-    rustc
-    cargo
+    rustup
     rust-analyzer
 
     ## Lua
