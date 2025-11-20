@@ -229,7 +229,7 @@ require('lazy').setup {
           map('grd', require('telescope.builtin').lsp_definitions, 'Goto definition')
           map('grt', require('telescope.builtin').lsp_type_definitions, 'Goto type definition')
           map('grD', vim.lsp.buf.declaration, 'Goto declaration')
-          map('gO', function()
+          map('gs', function()
             require('telescope.builtin').lsp_document_symbols({
               ignore_symbols = { 'Field' }
             })
