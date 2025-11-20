@@ -140,6 +140,7 @@ require('lazy').setup {
       spec = {
         { '<leader>s', group = 'Search' },
         { '<leader>q', group = 'Sessions' },
+        { '<leader>t', group = 'Toggles' },
       },
     },
   },
@@ -236,6 +237,9 @@ require('lazy').setup {
           map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
         end,
       })
+      vim.keymap.set('n', '<leader>td', function()
+        vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+      end, { desc = 'Toggle diagnostics' })
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
