@@ -157,7 +157,7 @@ require('lazy').setup {
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
     opts = {
-      ensure_installed = { 'lua', 'vim', 'vimdoc', 'zig', 'query', 'markdown', 'markdown_inline' },
+      ensure_installed = { 'lua', 'vim', 'vimdoc', 'zig', 'rust', 'query', 'markdown', 'markdown_inline' },
       auto_install = false,
       highlight = {
         enable = true,

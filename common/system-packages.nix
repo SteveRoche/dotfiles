@@ -52,7 +52,6 @@
 
     ## Rust
     rustup
-    rust-analyzer
 
     ## Lua
     lua51Packages.lua
