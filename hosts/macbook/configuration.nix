@@ -37,6 +37,7 @@
       "alt-tab"
       "anaconda"
       "balenaetcher"
+      "betterdisplay"
       "blender"
       "bunch"
       "calibre"
