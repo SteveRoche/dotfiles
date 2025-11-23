@@ -52,6 +52,7 @@
       "linear-linear"
       "mac-mouse-fix"
       "microsoft-outlook"
+      "neovide-app"
       "numi"
       "obsidian"
       "orion"

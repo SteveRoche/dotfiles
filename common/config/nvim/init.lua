@@ -2,7 +2,14 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
-vim.o.guifont = 'Berkeley Mono:h12'
+vim.o.guifont = 'Berkeley Mono:h14'
+
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0.05
+  vim.g.neovide_cursor_trail_size = 0.5
+  vim.g.neovide_cursor_animate_command_line = false
+  vim.g.neovide_cursor_vfx_mode = 'pixiedust'
+end
 
 vim.o.number = true
 vim.o.relativenumber = true
