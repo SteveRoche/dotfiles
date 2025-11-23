@@ -192,6 +192,9 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume search' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find existing buffers' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find existing buffers' })
+      vim.keymap.set('n', '<leader>sc', function()
+        builtin.colorscheme({ enable_preview = true })
+      end, { desc = 'Search colorschemes' })
 
       vim.keymap.set('n', '<leader>sn', function()
         builtin.live_grep { cwd = vim.fn.stdpath 'config' }
@@ -389,5 +392,21 @@ require('lazy').setup {
       require('telescope').load_extension('project')
       vim.keymap.set('n', '<leader>sp', function() require('telescope').extensions.project.project{} end, { desc = 'Search projects' })
     end,
-  }
+  },
+  {
+    'atiladefreitas/dooing',
+    config = function()
+      require('dooing').setup {
+        priorities = nil,
+        per_project = {
+          default_filename = 'todo.json',
+        },
+        keymaps = {
+          toggle_window = '<leader>tT',
+          open_project_todo = '<leader>tt'
+        },
+      }
+    end,
+  },
+
 }
