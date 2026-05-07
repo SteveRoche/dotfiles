@@ -8,8 +8,17 @@ bindkey -v
 EDITOR=nvim
 VISUAL=nvim
 
+CARGO_HOME=$HOME/.local/share/cargo
+RUSTUP_HOME=$HOME/.local/share/rustup
+
 alias ls='ls --color=auto'
 alias lg='lazygit'
+alias nps='nps -e=true'
+
+function restart-ssh() {
+  pkill ssh-agent
+  eval "$(ssh-agent -s)"
+}
 
 # yazi with cd on exit
 function y() {
@@ -21,15 +30,18 @@ function y() {
 }
 
 function rebuild() {
-  case "$(uname -s)" in
-    Linux)
-      sudo nixos-rebuild switch --flake ~/.dotfiles/#thinkpad --show-trace
+  case "$(hostname -s)" in
+    thinkpad)
+      sudo nixos-rebuild switch --flake ~/dotfiles/#thinkpad --show-trace
       ;;
-    Darwin)
-      sudo darwin-rebuild switch --flake ~/.dotfiles/#macbook --show-trace
+    desktop)
+      sudo nixos-rebuild switch --flake ~/dotfiles/#desktop --show-trace
+      ;;
+    mabook)
+      sudo darwin-rebuild switch --flake ~/dotfiles/#macbook --show-trace
       ;;
     *)
-      echo "Unsupported platform"
+      echo "Unconfigured device"
       ;;
   esac
 }
@@ -39,3 +51,4 @@ if [ "$(uname -s)" = "Darwin" ]; then
 fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"

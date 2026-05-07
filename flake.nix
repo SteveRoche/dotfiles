@@ -1,69 +1,35 @@
 {
-  description = "SteveRoche cross-platform Nix configuration";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    wrappers.url = "github:Lassulus/wrappers";
+    wrapper-modules.url = "github:Birdeehub/nix-wrapper-modules";
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    unstable-nixpkgs,
-    nix-darwin,
-    home-manager,
-    ...
-  }: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
+  outputs =
+    inputs @ { self, nixpkgs, ... }:
+    let
+      inherit (nixpkgs) lib;
+      inherit (lib.fileset) toList fileFilter;
+      isNixModule = file: file.hasExt "nix" && file.name != "flake.nix" && !lib.hasPrefix "_" file.name;
+      importTree = path: toList (fileFilter isNixModule path);
+      mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
+    in
+    mkFlake {
+      imports = importTree ./.;
+      systems = [ "x86_64-linux" "aarch64-darwin" ];
     };
-    unstable = import unstable-nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  in {
-    formatter.${system} = pkgs.alejandra;
-    nixosConfigurations = {
-      thinkpad = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit system inputs unstable; };
-        modules = [
-          ./hosts/thinkpad/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.steve = ./hosts/thinkpad/home.nix;
-            home-manager.extraSpecialArgs = { inherit inputs unstable; };
-          }
-        ];
-      };
-    };
-    darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
-      specialArgs = {
-        inherit system inputs;
-        unstable = import unstable-nixpkgs {
-          system = "aarch64-darwin";
-          config.allowUnfree = true;
-        };
-      };
-      modules = [
-        ./hosts/macbook/configuration.nix
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.steve = ./hosts/macbook/home.nix;
-          home-manager.extraSpecialArgs = { inherit inputs unstable; };
-        }
-      ];
-    };
-  };
 }
+
