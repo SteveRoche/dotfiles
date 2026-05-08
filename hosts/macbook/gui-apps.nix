@@ -19,7 +19,7 @@
       "imhex"
       "isabelle"
       "keepingyouawake"
-      "linear-linear"
+      "linear"
       "mac-mouse-fix"
       "microsoft-outlook"
       "numi"

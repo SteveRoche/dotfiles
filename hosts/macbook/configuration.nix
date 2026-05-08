@@ -1,6 +1,15 @@
 { inputs, self, ... }: {
   flake.darwinConfigurations.macbook = inputs.nix-darwin.lib.darwinSystem {
     modules = [
+      {
+        nixpkgs.overlays = [
+          (final: prev: { # Overlay to disable tests in direnv until upstream is fixed https://github.com/NixOS/nixpkgs/issues/507531
+            direnv = prev.direnv.overrideAttrs (oldAttrs: {
+              doCheck = false;
+            });
+          })
+        ];
+      }
       self.darwinModules.macbookConfiguration
       self.darwinModules.guiApps
       self.modules.cli
@@ -19,7 +28,8 @@
     ];
   };
 
-  flake.homeModules.mackbookHome = {
+  flake.homeModules.macbookHome = {
+    home.stateVersion = "25.11";
     home.homeDirectory = "/Users/steve";
   };
 
@@ -56,6 +66,12 @@
         "ghcup"
       ];
     };
+
+    programs.direnv = {
+      enable = true;
+      silent = true;
+    };
+
     system.defaults = {
       NSGlobalDomain = {
         ApplePressAndHoldEnabled = false;
