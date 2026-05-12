@@ -60,7 +60,7 @@
 
         ## C/C++
         cmake
-        lldb_18
+        lldb_20
         clang_20
         gnumake
 
