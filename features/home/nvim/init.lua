@@ -198,14 +198,9 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Search diagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume search' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find existing buffers' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find existing buffers' })
       vim.keymap.set('n', '<leader>sc', function()
         builtin.colorscheme({ enable_preview = true })
       end, { desc = 'Search colorschemes' })
-
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.live_grep { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Search Neovim files' })
     end,
   },
   { -- Lua language server setup for editing Neovim config
