@@ -45,6 +45,7 @@
         python313Packages.pynvim
 
         nil
+        nixd
         alejandra
 
         lua51Packages.lua

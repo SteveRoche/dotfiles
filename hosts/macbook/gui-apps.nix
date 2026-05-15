@@ -1,4 +1,4 @@
-{ inputs, self, ... }: {
+{ ... }: {
   flake.darwinModules.guiApps = { ... }: {
     imports = [];
 
@@ -30,11 +30,13 @@
       "proton-mail-bridge"
       "proton-pass"
       "protonvpn"
+      "rectangle"
       "steam"
       "ticktick"
       "visual-studio-code"
       "whatsapp"
       "yt-music"
+      "zed"
       "zotero"
     ];
   };

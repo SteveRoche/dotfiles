@@ -37,7 +37,7 @@ function rebuild() {
     desktop)
       sudo nixos-rebuild switch --flake ~/dotfiles/#desktop --show-trace
       ;;
-    mabook)
+    macbook)
       sudo darwin-rebuild switch --flake ~/dotfiles/#macbook --show-trace
       ;;
     *)

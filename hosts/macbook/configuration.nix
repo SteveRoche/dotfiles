@@ -82,18 +82,17 @@
         mru-spaces = false;
         magnification = true;
         persistent-apps = [
-          "/Applications/Helix.app"
           "/Applications/Proton Mail.app"
           "/Applications/Microsoft Outlook.app"
           { spacer = { small = true; }; }
-          "/Applications/TickTick.app"
+          "/Applications/Helium.app"
           "/Applications/Obsidian.app"
+          "/Applications/Zotero.app"
           { spacer = { small = true; }; }
           "/Applications/Ghostty.app"
           "/Applications/Visual Studio Code.app"
+          "/Applications/Zed.app"
           { spacer = { small = true; }; }
-          "/Applications/Zotero.app"
-          "/Applications/Numi.app"
         ];
         minimize-to-application = true;
         persistent-others = [];

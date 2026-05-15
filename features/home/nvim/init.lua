@@ -283,7 +283,15 @@ require('lazy').setup {
         lua_ls = {},
         tinymist = {},
         zls = {},
-        nil_ls = {},
+        nil_ls = {
+          settings = {
+            ['nil'] = {
+              nix = {
+                autoArchive = true,
+              },
+            },
+          },
+        },
         rust_analyzer = {},
       }
 
