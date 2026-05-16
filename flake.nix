@@ -19,7 +19,12 @@
     };
   };
   outputs =
-    inputs @ { self, nixpkgs, ... }:
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      ...
+    }:
     let
       inherit (nixpkgs) lib;
       inherit (lib.fileset) toList fileFilter;
@@ -29,7 +34,9 @@
     in
     mkFlake {
       imports = importTree ./.;
-      systems = [ "x86_64-linux" "aarch64-darwin" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
     };
 }
-

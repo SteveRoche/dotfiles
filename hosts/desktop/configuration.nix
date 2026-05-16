@@ -60,6 +60,15 @@
         };
       };
 
+      nixpkgs.overlays = [
+        (final: _prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit (final) config;
+            system = pkgs.stdenv.hostPlatform.system;
+          };
+        })
+      ];
+
       time.timeZone = "Australia/Sydney";
       i18n.defaultLocale = "en_AU.UTF-8";
       i18n.extraLocaleSettings = {
