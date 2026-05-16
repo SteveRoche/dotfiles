@@ -36,7 +36,7 @@
   };
 
   flake.darwinModules.macbookConfiguration =
-    { ... }:
+    { pkgs, ... }:
     {
       imports = [ ];
 
@@ -46,6 +46,15 @@
       nix.extraOptions = ''
         extra-platforms = aarch64-darwin
       '';
+
+      nixpkgs.overlays = [
+        (final: _prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            inherit (final) config;
+            system = pkgs.stdenv.hostPlatform.system;
+          };
+        })
+      ];
 
       users.users.steve.home = "/Users/steve";
       system.primaryUser = "steve";
