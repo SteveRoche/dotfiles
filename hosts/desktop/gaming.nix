@@ -1,6 +1,8 @@
 { ... }:
 {
-  flake.nixosModules.gaming = { pkgs, ... }: {
+  flake.nixosModules.gaming =
+    { pkgs, ... }:
+    {
       programs.steam.enable = true;
       programs.gamemode.enable = true;
       programs.steam.protontricks.enable = true;
@@ -8,7 +10,6 @@
         protonup-ng
         lutris
         vulkan-tools
-    ];
-  };
+      ];
+    };
 }
-

@@ -1,9 +1,11 @@
-{ inputs, self, ... }: {
+{ inputs, self, ... }:
+{
   flake.darwinConfigurations.macbook = inputs.nix-darwin.lib.darwinSystem {
     modules = [
       {
         nixpkgs.overlays = [
-          (final: prev: { # Overlay to disable tests in direnv until upstream is fixed https://github.com/NixOS/nixpkgs/issues/507531
+          (final: prev: {
+            # Overlay to disable tests in direnv until upstream is fixed https://github.com/NixOS/nixpkgs/issues/507531
             direnv = prev.direnv.overrideAttrs (oldAttrs: {
               doCheck = false;
             });
@@ -33,80 +35,94 @@
     home.homeDirectory = "/Users/steve";
   };
 
-  flake.darwinModules.macbookConfiguration = { ... }: {
-    imports = [];
+  flake.darwinModules.macbookConfiguration =
+    { ... }:
+    {
+      imports = [ ];
 
-    system.stateVersion = 4;
+      system.stateVersion = 4;
 
-    nixpkgs.hostPlatform = "aarch64-darwin";
-    nix.extraOptions = ''
-      extra-platforms = aarch64-darwin
-    '';
+      nixpkgs.hostPlatform = "aarch64-darwin";
+      nix.extraOptions = ''
+        extra-platforms = aarch64-darwin
+      '';
 
-    users.users.steve.home = "/Users/steve";
-    system.primaryUser = "steve";
+      users.users.steve.home = "/Users/steve";
+      system.primaryUser = "steve";
 
-    system.keyboard.enableKeyMapping = true;
-    system.keyboard.remapCapsLockToEscape = true;
+      system.keyboard.enableKeyMapping = true;
+      system.keyboard.remapCapsLockToEscape = true;
 
-    networking.hostName = "macbook";
+      networking.hostName = "macbook";
 
-    homebrew = {
-      enable = true;
-      onActivation = {
-        autoUpdate = true;
-        cleanup = "uninstall";
-        upgrade = true;
-      };
-      taps = [
-        "cfergeau/crc"
-      ];
-      brews = [
-        "vfkit"
-        "ghcup"
-      ];
-    };
-
-    programs.direnv = {
-      enable = true;
-      silent = true;
-    };
-
-    system.defaults = {
-      NSGlobalDomain = {
-        ApplePressAndHoldEnabled = false;
-        NSWindowShouldDragOnGesture = true;
-      };
-      dock = {
-        autohide = true;
-        mru-spaces = false;
-        magnification = true;
-        persistent-apps = [
-          "/Applications/Proton Mail.app"
-          "/Applications/Microsoft Outlook.app"
-          { spacer = { small = true; }; }
-          "/Applications/Helium.app"
-          "/Applications/Obsidian.app"
-          "/Applications/Zotero.app"
-          { spacer = { small = true; }; }
-          "/Applications/Ghostty.app"
-          "/Applications/Visual Studio Code.app"
-          "/Applications/Zed.app"
-          { spacer = { small = true; }; }
+      homebrew = {
+        enable = true;
+        onActivation = {
+          autoUpdate = true;
+          cleanup = "uninstall";
+          upgrade = true;
+        };
+        taps = [
+          "cfergeau/crc"
         ];
-        minimize-to-application = true;
-        persistent-others = [];
-        show-recents = false;
-        tilesize = 48;
-        largesize = 72;
+        brews = [
+          "vfkit"
+          "ghcup"
+        ];
       };
-      finder = {
-        AppleShowAllExtensions = true;
-        AppleShowAllFiles = true;
-        CreateDesktop = true;
+
+      programs.direnv = {
+        enable = true;
+        silent = true;
       };
-      screensaver.askForPasswordDelay = 10; # seconds
-      screencapture.location = "~/Pictures/Screenshots";
+
+      system.defaults = {
+        NSGlobalDomain = {
+          ApplePressAndHoldEnabled = false;
+          NSWindowShouldDragOnGesture = true;
+        };
+        dock = {
+          autohide = true;
+          mru-spaces = false;
+          magnification = true;
+          persistent-apps = [
+            "/Applications/Proton Mail.app"
+            "/Applications/Microsoft Outlook.app"
+            {
+              spacer = {
+                small = true;
+              };
+            }
+            "/Applications/Helium.app"
+            "/Applications/Obsidian.app"
+            "/Applications/Zotero.app"
+            {
+              spacer = {
+                small = true;
+              };
+            }
+            "/Applications/Ghostty.app"
+            "/Applications/Visual Studio Code.app"
+            "/Applications/Zed.app"
+            {
+              spacer = {
+                small = true;
+              };
+            }
+          ];
+          minimize-to-application = true;
+          persistent-others = [ ];
+          show-recents = false;
+          tilesize = 48;
+          largesize = 72;
+        };
+        finder = {
+          AppleShowAllExtensions = true;
+          AppleShowAllFiles = true;
+          CreateDesktop = true;
+        };
+        screensaver.askForPasswordDelay = 10; # seconds
+        screencapture.location = "~/Pictures/Screenshots";
+      };
     };
-  };
 }
