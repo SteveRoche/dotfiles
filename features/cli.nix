@@ -34,7 +34,7 @@
         lazygit
         jujutsu
 
-        neovim
+        unstable.neovim
         tree-sitter
 
         typst
