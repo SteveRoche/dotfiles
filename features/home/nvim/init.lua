@@ -216,7 +216,7 @@ require('lazy').setup {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'j-hui/fidget.nvim', opts = {} },
-      'saghen/blink.cmp',
+      { 'saghen/blink.cmp', version = '1.*' },
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -299,6 +299,7 @@ require('lazy').setup {
   },
   { -- Autocomplete
     'saghen/blink.cmp',
+    version = '1.*',
     build = 'nix run .#build-plugin',
     opts = {
       keymap = { preset = 'super-tab' },
