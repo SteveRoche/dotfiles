@@ -53,8 +53,8 @@
         lua-language-server
         stylua
 
-        zig
-        zls
+        unstable.zig
+        unstable.zls
 
         go
         gopls
