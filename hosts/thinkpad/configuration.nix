@@ -1,17 +1,15 @@
 { inputs, self, ... }:
 {
-  flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.thinkpad = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.nixosModules.desktopConfiguration
-      self.nixosModules.desktopHardware
+      self.nixosModules.thinkpadConfiguration
+      self.nixosModules.thinkpadHardware
       self.nixosModules.gnomeShell
-      self.nixosModules.gaming
       self.nixosModules.guiApps
       self.nixosModules.firefox
       self.modules.cli
       self.modules.nix
       inputs.nix-index-database.nixosModules.default
-      # inputs.omnisearch.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -28,13 +26,7 @@
     ];
   };
 
-  flake.homeConfigurations.home = {
-    home.stateVersion = "25.11";
-    home.username = "steve";
-    programs.home-manager.enable = true;
-  };
-
-  flake.nixosModules.desktopConfiguration =
+  flake.nixosModules.thinkpadConfiguration =
     { pkgs, ... }:
     {
       system.stateVersion = "25.11";
@@ -43,7 +35,7 @@
       boot.loader.efi.canTouchEfiVariables = true;
       boot.kernelPackages = pkgs.linuxPackages_6_18;
 
-      networking.hostName = "desktop";
+      networking.hostName = "thinkpad";
       networking.networkmanager.enable = true;
 
       hardware.bluetooth = {
@@ -111,8 +103,6 @@
         alsa.support32Bit = true;
         pulse.enable = true;
       };
-
-      # services.omnisearch.enable = true;
 
       programs.direnv = {
         enable = true;
