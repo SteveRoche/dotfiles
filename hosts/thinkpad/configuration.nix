@@ -7,6 +7,7 @@
       self.nixosModules.gnomeShell
       self.nixosModules.guiApps
       self.nixosModules.firefox
+      self.nixosModules.niri
       self.modules.cli
       self.modules.nix
       inputs.nix-index-database.nixosModules.default

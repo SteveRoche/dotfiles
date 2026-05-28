@@ -2,6 +2,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     wrappers.url = "github:Lassulus/wrappers";
     wrapper-modules.url = "github:Birdeehub/nix-wrapper-modules";
