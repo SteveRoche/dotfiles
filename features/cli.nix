@@ -11,7 +11,7 @@
         gnupg
         jq
         just
-        neofetch
+        fastfetch
         nps
         pdftk
         ripgrep

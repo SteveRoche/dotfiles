@@ -1,11 +1,11 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.nixosModules.niri = { pkgs, ... }: {
     programs.niri.enable = true;
     qt.enable = true;
 
     environment.systemPackages = with pkgs; [
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      noctalia-shell
       xwayland-satellite
       swayimg
       papirus-icon-theme
