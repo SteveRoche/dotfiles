@@ -9,6 +9,7 @@
       self.nixosModules.guiApps
       self.nixosModules.firefox
       self.nixosModules.niri
+      self.nixosModules.ssh
       self.modules.cli
       self.modules.nix
       inputs.nix-index-database.nixosModules.default
