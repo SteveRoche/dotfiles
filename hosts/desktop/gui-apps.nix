@@ -10,7 +10,6 @@
         discord
         ghostty
         jetbrains.clion
-        linear
         obsidian
         proton-pass
         protonmail-desktop
@@ -18,6 +17,7 @@
         unstable.zotero
         vscode
         zed-editor
+        z-library-desktop
       ];
     };
 }
