@@ -68,9 +68,6 @@
         ## Shell scripting
         shellcheck
       ];
-
-      # Install all Nerd fonts
-      fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
     };
 
   flake.homeModules.cli =
